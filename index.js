@@ -17,15 +17,20 @@ const fildNews = news => {
   // console.log(news)
   const  newsContainer = document.getElementById('navbar-2')
   news.forEach(newses => {
+   
     const newsesDiv = document.createElement('ul');
-    newsesDiv.classList.add("nav");
+
+    newsesDiv.classList.add("d-flex");
     newsesDiv.innerHTML = `
     <li class="nav-item">
-     <a class="nav-link active" aria-current="page" href="#">${newses.category_name}</a>
+     <a class="nav-link active" aria-current="page" href="#" onclick='loadNewsBlogs()'>${newses.category_name}</a>
     </li>
     `;
     newsContainer.appendChild(newsesDiv)
+    toggleSpinner(true);
   })
+  toggleSpinner(false);
+ 
  
 }
 
@@ -83,10 +88,20 @@ const displayNews = news => {
     newsContainer.appendChild(newsdiv)
   })
 
+
 }
   loadNewsBlogs();
 
-  
+  // toggle sppiner
 
+  const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader')
+    if (isLoading) {
+      loaderSection.classList.remove('d-none')
+    }
+    else{
+      loaderSection.classList.add('d-none')
+    }
+  }
 
   
